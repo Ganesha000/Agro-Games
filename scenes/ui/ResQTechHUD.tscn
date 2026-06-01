@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://resqtech_hud"]
+
+[ext_resource type="Script" path="res://scripts/ui/HUDController.gd" id="1_hud"]
+[ext_resource type="Script" path="res://scripts/ui/HealthUI.gd" id="2_health"]
+[ext_resource type="Script" path="res://scripts/ui/MinimapSystem.gd" id="3_minimap"]
+[ext_resource type="Script" path="res://scripts/ui/WarningAlertSystem.gd" id="4_warning"]
+[ext_resource type="Script" path="res://scripts/ui/ObjectivePanel.gd" id="5_objective"]
+[ext_resource type="Script" path="res://scripts/ui/DroneHUD.gd" id="6_dronehud"]
+
+[node name="ResQTechHUD" type="CanvasLayer"]
+script = ExtResource("1_hud")
+
+[node name="HealthUI" type="Control" parent="."]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 300.0
+offset_bottom = 100.0
+script = ExtResource("2_health")
+
+[node name="MinimapSystem" type="Control" parent="."]
+offset_left = 20.0
+offset_top = 110.0
+offset_right = 210.0
+offset_bottom = 300.0
+script = ExtResource("3_minimap")
+
+[node name="WarningAlertSystem" type="Control" parent="."]
+offset_left = 260.0
+offset_top = 24.0
+offset_right = 700.0
+offset_bottom = 200.0
+script = ExtResource("4_warning")
+
+[node name="ObjectivePanel" type="Control" parent="."]
+offset_left = 20.0
+offset_top = 320.0
+offset_right = 370.0
+offset_bottom = 500.0
+script = ExtResource("5_objective")
+
+[node name="DroneHUD" type="Control" parent="."]
+visible = false
+script = ExtResource("6_dronehud")

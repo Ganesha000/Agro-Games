@@ -1,0 +1,24 @@
+[gd_scene load_steps=8 format=3 uid="uid://resqtech_fireline_campus"]
+
+[ext_resource type="Script" path="res://scripts/SmartSchoolCampus.gd" id="1_campus"]
+[ext_resource type="PackedScene" path="res://scenes/ai/ResQTechAI.tscn" id="2_resqai"]
+[ext_resource type="PackedScene" path="res://scenes/ai/CrowdManager.tscn" id="3_crowd"]
+[ext_resource type="PackedScene" path="res://scenes/missions/MissionManager.tscn" id="4_mission"]
+[ext_resource type="PackedScene" path="res://scenes/ui/ResQTechHUD.tscn" id="5_hud"]
+[ext_resource type="PackedScene" path="res://scenes/cinematics/CutsceneManager.tscn" id="6_cutscene"]
+[ext_resource type="PackedScene" path="res://scenes/audio/AudioManager.tscn" id="7_audio"]
+
+[node name="SmartSchoolCampus" type="Node3D"]
+script = ExtResource("1_campus")
+
+[node name="ResQTechAI" parent="." instance=ExtResource("2_resqai")]
+
+[node name="CrowdManager" parent="." instance=ExtResource("3_crowd")]
+
+[node name="MissionManager" parent="." instance=ExtResource("4_mission")]
+
+[node name="ResQTechHUD" parent="." instance=ExtResource("5_hud")]
+
+[node name="CutsceneManager" parent="." instance=ExtResource("6_cutscene")]
+
+[node name="AudioManager" parent="." instance=ExtResource("7_audio")]

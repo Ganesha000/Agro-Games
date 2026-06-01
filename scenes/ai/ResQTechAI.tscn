@@ -1,0 +1,26 @@
+[gd_scene load_steps=7 format=3 uid="uid://resqtech_ai_manager"]
+
+[ext_resource type="Script" path="res://scripts/ai/ResQTechAI.gd" id="1_ai"]
+[ext_resource type="Script" path="res://scripts/ai/DangerAnalysis.gd" id="2_danger"]
+[ext_resource type="Script" path="res://scripts/ai/SafeRouteSystem.gd" id="3_route"]
+[ext_resource type="Script" path="res://scripts/ai/ThermalScanner.gd" id="4_thermal"]
+[ext_resource type="Script" path="res://scripts/ai/EmergencyAnnouncementSystem.gd" id="5_announce"]
+[ext_resource type="Script" path="res://scripts/ai/SmartInfrastructureController.gd" id="6_infra"]
+
+[node name="ResQTechAI" type="Node3D"]
+script = ExtResource("1_ai")
+
+[node name="DangerAnalysis" type="Node3D" parent="."]
+script = ExtResource("2_danger")
+
+[node name="SafeRouteSystem" type="Node3D" parent="."]
+script = ExtResource("3_route")
+
+[node name="ThermalScanner" type="Node3D" parent="."]
+script = ExtResource("4_thermal")
+
+[node name="EmergencyAnnouncementSystem" type="Node" parent="."]
+script = ExtResource("5_announce")
+
+[node name="SmartInfrastructureController" type="Node3D" parent="."]
+script = ExtResource("6_infra")

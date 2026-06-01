@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://resqtech_mission_manager"]
+
+[ext_resource type="Script" path="res://scripts/missions/MissionManager.gd" id="1_mission"]
+[ext_resource type="Script" path="res://scripts/missions/ObjectiveSystem.gd" id="2_objective"]
+[ext_resource type="Script" path="res://scripts/missions/TriggerEventSystem.gd" id="3_trigger"]
+[ext_resource type="Script" path="res://scripts/missions/CheckpointManager.gd" id="4_checkpoint"]
+
+[node name="MissionManager" type="Node"]
+script = ExtResource("1_mission")
+
+[node name="ObjectiveSystem" type="Node" parent="."]
+script = ExtResource("2_objective")
+
+[node name="TriggerEventSystem" type="Node3D" parent="."]
+script = ExtResource("3_trigger")
+
+[node name="CheckpointManager" type="Node" parent="."]
+script = ExtResource("4_checkpoint")

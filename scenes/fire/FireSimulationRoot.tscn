@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://fire_simulation_root"]
+
+[ext_resource type="Script" path="res://scripts/fire/FireManager.gd" id="1_manager"]
+[ext_resource type="Script" path="res://scripts/fire/HeatSystem.gd" id="2_heat"]
+[ext_resource type="Script" path="res://scripts/fire/ExplosionSystem.gd" id="3_explosion"]
+[ext_resource type="Script" path="res://scripts/fire/FireAudioController.gd" id="4_audio"]
+
+[node name="FireSimulationRoot" type="Node3D"]
+script = ExtResource("1_manager")
+
+[node name="HeatSystem" type="Node" parent="."]
+script = ExtResource("2_heat")
+
+[node name="ExplosionSystem" type="Node3D" parent="."]
+script = ExtResource("3_explosion")
+
+[node name="FireAudioController" type="Node" parent="."]
+script = ExtResource("4_audio")
+
+[node name="Crackle" type="AudioStreamPlayer" parent="FireAudioController"]
+volume_db = -28.0
+
+[node name="Alarm" type="AudioStreamPlayer" parent="FireAudioController"]
+volume_db = -32.0
+
+[node name="Explosion" type="AudioStreamPlayer" parent="FireAudioController"]
+volume_db = -10.0
+
+[node name="Collapse" type="AudioStreamPlayer" parent="FireAudioController"]
+volume_db = -10.0
+

@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://smoke_simulation_root"]
+
+[ext_resource type="Script" path="res://scripts/smoke/SmokeManager.gd" id="1_manager"]
+[ext_resource type="Script" path="res://scripts/smoke/OxygenSystem.gd" id="2_oxygen"]
+[ext_resource type="Script" path="res://scripts/smoke/VisibilityController.gd" id="3_visibility"]
+[ext_resource type="Script" path="res://scripts/smoke/SmokeAudioController.gd" id="4_audio"]
+
+[node name="SmokeSimulationRoot" type="Node3D"]
+script = ExtResource("1_manager")
+
+[node name="OxygenSystem" type="Node" parent="."]
+script = ExtResource("2_oxygen")
+
+[node name="VisibilityController" type="Node" parent="."]
+script = ExtResource("3_visibility")
+
+[node name="SmokeAudioController" type="Node" parent="."]
+script = ExtResource("4_audio")
+
+[node name="CoughLoop" type="AudioStreamPlayer" parent="SmokeAudioController"]
+volume_db = -40.0
+
+[node name="MuffledHearing" type="AudioStreamPlayer" parent="SmokeAudioController"]
+volume_db = -42.0
+
+[node name="PanicBreathing" type="AudioStreamPlayer" parent="SmokeAudioController"]
+volume_db = -38.0
+

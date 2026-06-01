@@ -1,0 +1,22 @@
+[gd_scene load_steps=6 format=3 uid="uid://resqtech_cutscene_manager"]
+
+[ext_resource type="Script" path="res://scripts/cinematics/CutsceneManager.gd" id="1_cutscene"]
+[ext_resource type="Script" path="res://scripts/cinematics/CinematicCamera.gd" id="2_camera"]
+[ext_resource type="Script" path="res://scripts/cinematics/ScriptedEventSystem.gd" id="3_events"]
+[ext_resource type="Script" path="res://scripts/cinematics/ExplosionSequence.gd" id="4_explosion"]
+[ext_resource type="Script" path="res://scripts/cinematics/EndingManager.gd" id="5_ending"]
+
+[node name="CutsceneManager" type="Node3D"]
+script = ExtResource("1_cutscene")
+
+[node name="CinematicCamera" type="Camera3D" parent="."]
+script = ExtResource("2_camera")
+
+[node name="ScriptedEventSystem" type="Node3D" parent="."]
+script = ExtResource("3_events")
+
+[node name="ExplosionSequence" type="Node3D" parent="."]
+script = ExtResource("4_explosion")
+
+[node name="EndingManager" type="Node" parent="."]
+script = ExtResource("5_ending")

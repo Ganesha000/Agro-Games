@@ -1,0 +1,129 @@
+[gd_scene load_steps=17 format=3 uid="uid://player_harshit_fireline"]
+
+[ext_resource type="Script" path="res://scripts/player/PlayerMovement.gd" id="1_movement"]
+[ext_resource type="Script" path="res://scripts/player/PlayerCamera.gd" id="2_camera"]
+[ext_resource type="Script" path="res://scripts/player/PlayerInteraction.gd" id="3_interaction"]
+[ext_resource type="Script" path="res://scripts/player/PlayerHealth.gd" id="4_health"]
+[ext_resource type="Script" path="res://scripts/player/StaminaSystem.gd" id="5_stamina"]
+[ext_resource type="Script" path="res://scripts/player/SmokeSystem.gd" id="6_smoke"]
+[ext_resource type="Script" path="res://scripts/player/AudioController.gd" id="7_audio"]
+[ext_resource type="Script" path="res://scripts/player/AnimationController.gd" id="8_animation"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_harshit"]
+radius = 0.32
+height = 1.78
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_smoke_probe"]
+radius = 1.2
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_torso"]
+radius = 0.5
+height = 1.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_head"]
+radius = 0.5
+height = 1.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_bag"]
+size = Vector3(1, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="Material_uniform"]
+albedo_color = Color(0.08, 0.19, 0.48, 1)
+roughness = 0.72
+
+[sub_resource type="StandardMaterial3D" id="Material_skin"]
+albedo_color = Color(0.62, 0.42, 0.28, 1)
+roughness = 0.68
+
+[sub_resource type="StandardMaterial3D" id="Material_bag"]
+albedo_color = Color(0.035, 0.035, 0.04, 1)
+roughness = 0.8
+
+[node name="PlayerHarshit" type="CharacterBody3D"]
+script = ExtResource("1_movement")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.89, 0)
+shape = SubResource("CapsuleShape3D_harshit")
+
+[node name="Neck" type="Node3D" parent="."]
+
+[node name="CameraRig" type="Node3D" parent="Neck"]
+script = ExtResource("2_camera")
+
+[node name="Camera3D" type="Camera3D" parent="Neck/CameraRig"]
+current = true
+fov = 72.0
+near = 0.04
+far = 420.0
+
+[node name="InteractionRay" type="RayCast3D" parent="Neck/CameraRig/Camera3D"]
+target_position = Vector3(0, 0, -3)
+script = ExtResource("3_interaction")
+
+[node name="PromptLabel" type="Label3D" parent="Neck"]
+visible = false
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 1.1, -1.6)
+pixel_size = 0.0035
+billboard = 1
+text = ""
+font_size = 28
+outline_size = 8
+
+[node name="BodyVisual" type="Node3D" parent="."]
+
+[node name="Torso" type="MeshInstance3D" parent="BodyVisual"]
+transform = Transform3D(0.42, 0, 0, 0, 0.82, 0, 0, 0, 0.24, 0, 0.98, 0)
+mesh = SubResource("CapsuleMesh_torso")
+surface_material_override/0 = SubResource("Material_uniform")
+
+[node name="Head" type="MeshInstance3D" parent="BodyVisual"]
+transform = Transform3D(0.24, 0, 0, 0, 0.24, 0, 0, 0, 0.24, 0, 1.56, 0)
+mesh = SubResource("SphereMesh_head")
+surface_material_override/0 = SubResource("Material_skin")
+
+[node name="SchoolBag" type="MeshInstance3D" parent="BodyVisual"]
+transform = Transform3D(0.36, 0, 0, 0, 0.55, 0, 0, 0, 0.16, 0, 1.02, 0.28)
+mesh = SubResource("BoxMesh_bag")
+surface_material_override/0 = SubResource("Material_bag")
+
+[node name="Systems" type="Node" parent="."]
+
+[node name="PlayerHealth" type="Node" parent="Systems"]
+script = ExtResource("4_health")
+
+[node name="StaminaSystem" type="Node" parent="Systems"]
+script = ExtResource("5_stamina")
+
+[node name="SmokeProbe" type="Area3D" parent="Systems"]
+script = ExtResource("6_smoke")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Systems/SmokeProbe"]
+shape = SubResource("SphereShape3D_smoke_probe")
+
+[node name="AudioController" type="Node" parent="Systems"]
+script = ExtResource("7_audio")
+
+[node name="Footsteps" type="AudioStreamPlayer3D" parent="Systems/AudioController"]
+unit_size = 2.0
+max_distance = 18.0
+
+[node name="Breathing" type="AudioStreamPlayer" parent="Systems/AudioController"]
+volume_db = -28.0
+
+[node name="Cough" type="AudioStreamPlayer" parent="Systems/AudioController"]
+volume_db = -12.0
+
+[node name="Heartbeat" type="AudioStreamPlayer" parent="Systems/AudioController"]
+volume_db = -34.0
+
+[node name="Pain" type="AudioStreamPlayer" parent="Systems/AudioController"]
+volume_db = -14.0
+
+[node name="Interaction" type="AudioStreamPlayer" parent="Systems/AudioController"]
+volume_db = -10.0
+
+[node name="AnimationController" type="Node" parent="Systems"]
+script = ExtResource("8_animation")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Systems/AnimationController"]

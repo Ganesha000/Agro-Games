@@ -1,0 +1,34 @@
+[gd_scene load_steps=8 format=3 uid="uid://resqtech_rescue_drone"]
+
+[ext_resource type="Script" path="res://scripts/drone/DroneController.gd" id="1_drone"]
+[ext_resource type="Script" path="res://scripts/drone/DroneCamera.gd" id="2_camera"]
+[ext_resource type="Script" path="res://scripts/drone/DroneBatterySystem.gd" id="3_battery"]
+[ext_resource type="Script" path="res://scripts/drone/DroneThermalScanner.gd" id="4_thermal"]
+[ext_resource type="Script" path="res://scripts/drone/SurvivorDetection.gd" id="5_detect"]
+[ext_resource type="Script" path="res://scripts/drone/HazardAnalyzer.gd" id="6_hazard"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_drone"]
+size = Vector3(0.8, 0.25, 0.8)
+
+[node name="RescueDrone" type="CharacterBody3D"]
+script = ExtResource("1_drone")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_drone")
+
+[node name="DroneCamera" type="Node3D" parent="."]
+script = ExtResource("2_camera")
+
+[node name="Camera3D" type="Camera3D" parent="DroneCamera"]
+
+[node name="DroneBatterySystem" type="Node" parent="."]
+script = ExtResource("3_battery")
+
+[node name="DroneThermalScanner" type="Node3D" parent="."]
+script = ExtResource("4_thermal")
+
+[node name="SurvivorDetection" type="Node" parent="."]
+script = ExtResource("5_detect")
+
+[node name="HazardAnalyzer" type="Node3D" parent="."]
+script = ExtResource("6_hazard")
